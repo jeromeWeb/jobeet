@@ -1,3 +1,11 @@
-ens_jobeet_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: EnsJobeetBundle:Default:index }
+EnsJobeetBundle_homepage:
+    pattern:  /
+    defaults: { _controller: "EnsJobeetBundle:Job:index" }
+
+EnsJobeetBundle_job:
+    resource: "@EnsJobeetBundle/Resources/config/routing/job.yml"
+    prefix: /job
+
+EnsJobeetBundle_category:
+    pattern:  /category/{slug}
+    defaults: { _controller: "EnsJobeetBundle:Category:show" }   

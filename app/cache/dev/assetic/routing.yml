@@ -2,4 +2,4 @@ _assetic:
   resource: .
   type: assetic
 _app:
-  resource: /home/jerome/git/jobeet/app/config/routing_dev.yml
+  resource: /home/jerome/workspace/jobeet/app/config/routing_dev.yml

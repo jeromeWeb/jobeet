@@ -3,6 +3,7 @@
 namespace Ens\JobeetBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Ens\JobeetBundle\Utils\Jobeet as Jobeet;
 
 /**
  * Job
@@ -446,18 +447,6 @@ class Job
 	}
 
 	/**
-	 * Set created_at
-	 *
-	 */
-	public function setCreatedAt()
-	{
-		if(!$this->getCreatedAt())
-		{
-			$this->created_at = new \DateTime();
-		}
-	}
-
-	/**
 	 * Get created_at
 	 *
 	 * @return \DateTime
@@ -467,14 +456,6 @@ class Job
 		return $this->created_at;
 	}
 
-	/**
-	 * Set updated_at
-	 *
-	 */
-	public function setUpdatedAt()
-	{
-		$this->updated_at = new \DateTime();
-	}
 
 	/**
 	 * Get updated_at
@@ -526,4 +507,72 @@ class Job
 	{
 		$this->updated_at = new \DateTime();
 	}
+	
+	/**
+	 * Get Company slug
+	 * 
+	 * @return string
+	 */
+	public function getCompanySlug()
+	{
+		return Jobeet::slugify($this->getCompany());
+	}
+	
+	/**
+	 * Get position slug
+	 * 
+	 * @return string
+	 */
+	public function getPositionSlug()
+	{
+		return Jobeet::slugify($this->getPosition());
+	}
+	
+	/**
+	 * Get location slug
+	 * 
+	 * @return string
+	 */
+	public function getLocationSlug()
+	{
+		return Jobeet::slugify($this->getLocation());
+	}	
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function setExpiresAtValue()
+    {
+    	if(!$this->getExpiresAt())
+    	{
+    		$now = $this->getCreatedAt() ? $this->getCreatedAt()->format('U') : time();
+    		$this->expires_at = new \DateTime(date('Y-m-d H:i:s', $now + 86400 * 30));
+    	}
+    }
+
+    /**
+     * Set updated_at
+     *
+     * @param \DateTime $updatedAt
+     * @return Job
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updated_at = $updatedAt;
+    
+        return $this;
+    }
+
+    /**
+     * Set created_at
+     *
+     * @param \DateTime $createdAt
+     * @return Job
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->created_at = $createdAt;
+    
+        return $this;
+    }
 }
