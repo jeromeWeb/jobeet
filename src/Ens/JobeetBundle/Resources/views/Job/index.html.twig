@@ -9,8 +9,8 @@
 {% block content %}
   <div id="jobs">
     {% for category in categories %}
-      <div>
-        <div class="category">
+      <div class="category_{{ category.slug }}">
+		<div class="category">
           <div class="feed">
             <a href="">Feed</a>
           </div>
