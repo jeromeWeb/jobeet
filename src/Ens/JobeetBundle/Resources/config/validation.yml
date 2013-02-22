@@ -1,0 +1,4 @@
+Ens\JobeetBundle\Entity\Job:
+  properties:
+    email:
+      - Email: ~

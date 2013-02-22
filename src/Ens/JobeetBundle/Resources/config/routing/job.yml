@@ -18,15 +18,26 @@ ens_job_create:
     requirements: { _method: post }
 
 ens_job_edit:
-    pattern:  /{id}/edit
+    pattern:  /{token}/edit
     defaults: { _controller: "EnsJobeetBundle:Job:edit" }
 
 ens_job_update:
-    pattern:  /{id}/update
+    pattern:  /{token}/update
     defaults: { _controller: "EnsJobeetBundle:Job:update" }
     requirements: { _method: post }
 
 ens_job_delete:
-    pattern:  /{id}/delete
+    pattern:  /{token}/delete
     defaults: { _controller: "EnsJobeetBundle:Job:delete" }
     requirements: { _method: post }
+
+ens_job_preview:
+    pattern:  /{company}/{location}/{token}/{position}
+    defaults: { _controller: "EnsJobeetBundle:Job:preview" }
+    requirements:
+        token:  \w+
+        
+ens_job_publish:
+    pattern:  /{token}/publish
+    defaults: { _controller: "EnsJobeetBundle:Job:publish" }
+    requirements: { _method: post }    
