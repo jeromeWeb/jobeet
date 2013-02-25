@@ -2,3 +2,4 @@
 /app/logs/*
 /vendor/*
 /web/uploads/*
+/web/bundles/*
