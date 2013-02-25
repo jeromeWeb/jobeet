@@ -1,6 +1,8 @@
 <?php
 
 namespace Ens\JobeetBundle\Entity;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+
 use Doctrine\ORM\Mapping as ORM;
 use Ens\JobeetBundle\Utils\Jobeet as Jobeet;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -112,7 +114,7 @@ class Job {
 	/**
 	 * @var \UploadedFile
 	 */
-	public $file;
+	private $file;
 
 	/**
 	 * Set id
@@ -447,6 +449,27 @@ class Job {
 		return $this->updated_at;
 	}
 
+	
+	/**
+	 * Set file
+	 *
+	 * @param UploadedFile $file
+	 * @return Job
+	 */
+	public function setFile($file) {
+		$this->file = $file;
+	
+		return $this;
+	}
+	
+	/**
+	 * Get file
+	 *
+	 * @return UploadedFile
+	 */
+	public function getFile() {
+		return $this->file;
+	}	
 	/**
 	 * Set category
 	 *

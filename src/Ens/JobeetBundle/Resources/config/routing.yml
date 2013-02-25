@@ -9,4 +9,13 @@ EnsJobeetBundle_job:
 EnsJobeetBundle_category:
     pattern:  /category/{slug}/{page}
     defaults: { _controller: "EnsJobeetBundle:Category:show", page: 1 }
-      
+
+login:
+    pattern:   /login
+    defaults:  { _controller: "EnsJobeetBundle:Default:login" }
+
+login_check:
+    pattern:   /login_check
+    
+logout:
+    pattern:   /logout
